@@ -69,7 +69,7 @@
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
-
+<!-- 
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>com.alibaba.dubbo.remoting.http.servlet.DispatcherServlet</servlet-class>
@@ -79,7 +79,7 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
-
+ -->
     <!-- 德鲁伊监控平台监控器 -->
     <servlet>
         <servlet-name>DruidStatView</servlet-name>
