@@ -18,6 +18,7 @@
 		<fastjson.version>1.2.16</fastjson.version>
 		<slf4j.version>1.7.21</slf4j.version>
 		<dubbo.version>2.5.3</dubbo.version>
+		<shiro.version>1.3.0</shiro.version>
 	</properties>
 
 	<dependencies>
@@ -94,7 +95,36 @@
 			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
+    <!-- aspectJ AOP 织入器 -->
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>1.8.9</version>
+    </dependency>
 
+    <!-- shiro-web -->  
+    <dependency>  
+      <groupId>org.apache.shiro</groupId>  
+      <artifactId>shiro-web</artifactId>  
+      <version>${shiro.version}</version>  
+    </dependency>  
+    <!-- shiro-spring -->  
+    <dependency>  
+      <groupId>org.apache.shiro</groupId>  
+      <artifactId>shiro-spring</artifactId>  
+      <version>${shiro.version}</version>  
+    </dependency>  
+    <!-- shiro-ehcache -->  
+    <dependency>  
+      <groupId>org.apache.shiro</groupId>  
+      <artifactId>shiro-ehcache</artifactId>  
+      <version>${shiro.version}</version>  
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-core</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
 
 		<dependency>
 			<groupId>javax</groupId>
@@ -103,6 +133,32 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+	
+	
+	<profiles>
+    <profile>
+      <id>local</id>
+      <properties>
+        <env>local</env>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <id>iot</id>
+      <properties>
+        <env>iot</env>
+      </properties>
+    </profile>
+    <profile>
+      <id>dockerhomeserver</id>
+      <properties>
+        <env>dockerhomeserver</env>
+      </properties>
+    </profile>
+	</profiles>
+	
 	<build>
 		<finalName>DPLB_Web</finalName>
 		<plugins>
@@ -125,5 +181,21 @@
 				<version>2.3</version>
 			</plugin>
 		</plugins>
+    <filters>
+        <filter>src/main/resources/dbconf/${env}.jdbc.properties</filter>
+    </filters>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+          <directory>src/main/resources</directory>
+          <filtering>true</filtering>
+      </resource>
+    </resources>
 	</build>
 </project>
