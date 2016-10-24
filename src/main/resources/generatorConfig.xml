@@ -9,7 +9,7 @@
       <property name="addRemarkComments" value="true" />
     </commentGenerator>
     <jdbcConnection
-      connectionURL="jdbc:mysql://localhost:3306/dplb_web?characterEncoding=utf8"
+      connectionURL="jdbc:mysql://mysql.augus.tech:3306/dplb_web?characterEncoding=utf8"
       driverClass="com.mysql.jdbc.Driver" password="spring" userId="dplb_web" />
     <javaModelGenerator targetPackage="com.airchina.xn.web.model"
       targetProject="DPLB_Web" />
